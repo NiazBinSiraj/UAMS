@@ -1,0 +1,41 @@
+<div class="box-p">
+    <div class="form-content">
+        <button class="button" style="margin-bottom: 20px;"><b>SIGN IN</b></button>
+
+        <div class="field is-horizontal" style="margin-bottom: 20px; width: 100%;">
+            <!-- <div class="field-label is-normal">
+                <label class="label">Appointment</label>
+            </div> -->
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input (keyup)="OnEditEmail($event)" class="input" type="text" placeholder="Email">
+                    </div>
+                    <!-- <p class="help is-danger">
+                  This field is required
+                </p> -->
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal" style="margin-bottom: 20px; width: 100%;">
+            <!-- <div class="field-label is-normal">
+                <label class="label">Password</label>
+            </div> -->
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input (keyup)="OnEditPassword($event)" class="input" type="password" placeholder="Password">
+                    </div>
+                    <!-- <p class="help is-danger">
+          This field is required
+        </p> -->
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button [routerLink]=" '/register' " class="button" style="background-color: #5dac1c; color: black;"><b>Register</b></button>
+            <button (click)="OnClickLogin()" class="button" style="background-color: #5dac1c; color: black;"><b>Login</b></button>
+        </div>
+        <a [routerLink]=" '/forgetpassword' " style="color: yellow;"><b>Forgot Password?</b></a>
+    </div>
+</div>
