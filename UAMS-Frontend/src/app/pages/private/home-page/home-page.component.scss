@@ -1,0 +1,80 @@
+.is-gap-bellow{
+    margin-bottom: 25px;;
+}
+
+.box-control-button{
+    position: absolute;
+
+    top: 60px;
+    left: 100px;
+
+    height: 40px;
+    width: 100px;
+    background-color: transparent;
+}
+
+.box-logout-button{
+    position: absolute;
+
+    top: 60px;
+    right: 100px;
+
+    height: 40px;
+    width: 100px;
+    background-color: transparent;
+}
+
+.box-title{
+    position: absolute;
+
+    top: 60px;
+    left: 600px;
+
+    height: 40px;
+    width: 150px;
+    background-color: transparent;
+}
+
+.box-menu{
+    position: absolute;
+
+    top: 120px;
+    left: 50px;
+
+    height: 800px;
+    width: 15%;
+    background-color: transparent;
+}
+
+.box-goc{
+    position: absolute;
+    background-color: white;
+
+    height: 300px;
+    width: 350px;
+
+    top: 120px;
+    right: 10px;
+}
+
+.box-comd{
+    position: absolute;
+    background-color: white;
+
+    height: 210px;
+    width: 170px;
+
+    right: 190px;
+    bottom: 10px;
+}
+
+.box-co{
+    position: absolute;
+    background-color: white;
+
+    height: 210px;
+    width: 170px;
+
+    right: 10px;
+    bottom: 10px;
+}
