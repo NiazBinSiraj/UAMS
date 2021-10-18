@@ -1,0 +1,283 @@
+<div>
+    <h2 class="title is-2" style="color: yellow; text-align: center;"> MY PROFILE </h2>
+</div>
+
+<div class="tile is-ancestor" style="height: 88vh;">
+    <div class="tile is-vertical is-4">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          
+          <article class="panel is-child notification" style="padding: 0px;">
+            <p class="panel-heading" style="text-align: center;">
+              BIO DATA
+            </p>
+
+            <div class="columns">
+              <div class="column is-half" style="margin-bottom: 0px;">
+                <b class="panel-block">
+                  Appointment:
+                </b>
+                <b class="panel-block">
+                  Name:
+                </b>
+                <b class="panel-block">
+                  Army Number:
+                </b>
+                <b class="panel-block">
+                  Email:
+                </b>
+              </div>
+
+              <div class="column is-half">
+                <p *ngIf="!toggleAppointment" (click)="OnClickAppointment()" class="panel-block">
+                  {{user.appointment}}
+                </p>
+                <input *ngIf="toggleAppointment" (change)="OnEditAppointment($event)" class="input" type="text" placeholder={{user.appointment}}>
+                <p *ngIf="!toggleName" (click)="OnClickName()" class="panel-block">
+                  {{user.name}}
+                </p>
+                <input *ngIf="toggleName" (change)="OnEditName($event)" class="input" type="text" placeholder={{user.name}}>
+                <p *ngIf="!toggleArmyNumber" (click)="OnClickArmyNumber()" class="panel-block">
+                  {{user.army_number}}
+                </p>
+                <input *ngIf="toggleArmyNumber" (change)="OnEditArmyNumber($event)" class="input" type="number" placeholder={{user.army_number}}>
+                <p *ngIf="!toggleEmail" (click)="OnClickEmail()" class="panel-block">
+                  {{user.email}}
+                </p>
+                <input *ngIf="toggleEmail" (change)="OnEditEmail($event)" class="input" type="text" placeholder={{user.email}}>
+              </div>
+            </div>
+            <div *ngIf="toggleAppointment || toggleArmyNumber || toggleEmail || toggleName" class="buttons is-centered">
+              <button id="savebutton" (click)="OnClickSave()" class="button is-primary" style="margin-bottom: 50px;">SAVE</button>
+            </div>
+          </article>
+
+          <article class="panel is-child notification" style="padding: 0px;">
+            <p class="panel-heading" style="text-align: center;">
+              IMPORTANT LINKS
+            </p>
+            <a [routerLink]=" '/home' " class="panel-block" style="background-color: gainsboro;">
+              <b>HOME</b>
+            </a>
+            <a [routerLink]=" '/home' " class="panel-block" style="background-color: gainsboro;">
+              <b>POLICY</b>
+            </a>
+            <a [routerLink]=" '/home' " class="panel-block" style="background-color: gainsboro;">
+              <b>DAAK FILES</b>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </div>
+    <div class="tile is-parent is-5">
+        <article class="tile is-child notification">
+          <div class="content">
+            <p class="title is-4" style="text-align: center;">EVENTS</p>
+            <app-event-calendar></app-event-calendar>
+            <div class="content">
+              <div class="buttons is-centered">
+                <button class="button is-primary">CREATE EVENT</button>
+              </div>
+            </div>
+          </div>
+        </article>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification" style="padding: 0px;">
+        
+        <article class="panel scroll">
+          <p class="panel-heading" style="text-align: center;">
+            TODO LIST
+          </p>
+          <div class="panel-block">
+            <div class="level" style="width: 100%;">
+              <div class="level-left">
+                <div class="level-item">
+                  <button class="button" style="background-color: #2c3e50; color: white;">ALL</button>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <button class="button is-success">NEW</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-done">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <div class="box" style="width: 100%;">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    Task 1
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <span class="icon has-text-inactive">
+                      <i class="far fa-check-circle"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </article>
+
+      </article>
+    </div>
+  </div>

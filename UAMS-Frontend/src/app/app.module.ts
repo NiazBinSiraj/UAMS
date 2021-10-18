@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { LoginPageComponent } from './pages/public/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/public/register-page/register-page.component';
 import { ForgetpasswordPageComponent } from './pages/public/forgetpassword-page/forgetpassword-page.component';
