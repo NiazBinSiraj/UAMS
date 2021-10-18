@@ -38,7 +38,16 @@ export class LoginPageComponent implements OnInit {
       Appdata.instance.token = res.token;
       Appdata.instance.isloggedIn = true;
 
+      Appdata.instance.user.id = res.user.id;
+      Appdata.instance.user.appointment = res.user.appointment;
+      Appdata.instance.user.army_number = res.user.army_number;
+      Appdata.instance.user.name = res.user.name;
+      Appdata.instance.user.email = res.user.email;
+      Appdata.instance.user.password = res.user.password;
+
       this.router.navigate(["/home"]);
-    })
+    }).catch((err) =>{
+      alert("Wrong Credentials");
+    });
   }
 }

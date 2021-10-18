@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: "register", component: RegisterPageComponent},
   {path: "forgetpassword", component: ForgetpasswordPageComponent},
   {path: '', redirectTo: "/login", pathMatch: 'full'},
-  { path: 'home', loadChildren: () => import('./pages/private/home-page/home-page.module').then(m => m.HomePageModule) }
+  { path: 'home', loadChildren: () => import('./pages/private/home-page/home-page.module').then(m => m.HomePageModule) },
+  { path: 'myprofile', loadChildren: () => import('./pages/private/myprofile-page/myprofile-page.module').then(m => m.MyprofilePageModule) }
 ];
 
 @NgModule({

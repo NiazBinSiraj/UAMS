@@ -55,7 +55,9 @@ export class RegisterPageComponent implements OnInit {
     this.authService.Register(content).then((res) => {
       Appdata.instance.token = res.token;
       this.router.navigate(['/login']);
-    }).catch(console.error);
+    }).catch((err) => {
+      alert("Wrong Credentials");
+    });
   }
 
 }
