@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit {
 
+  isLoading:boolean = false;
+  
   user:User = new User;
   
   constructor(private authService:AuthService, private router:Router) { }
@@ -44,6 +46,8 @@ export class RegisterPageComponent implements OnInit {
 
   OnClickRegister()
   {
+    this.isLoading = true;
+    
     let content = {
       "appointment": this.user.appointment,
       "army_number": this.user.army_number,
@@ -54,9 +58,11 @@ export class RegisterPageComponent implements OnInit {
     console.log(content);
     this.authService.Register(content).then((res) => {
       Appdata.instance.token = res.token;
+      this.isLoading = false;
       this.router.navigate(['/login']);
     }).catch((err) => {
-      alert("Wrong Credentials");
+      this.isLoading = false;
+      window.alert("Wrong Credentials");
     });
   }
 

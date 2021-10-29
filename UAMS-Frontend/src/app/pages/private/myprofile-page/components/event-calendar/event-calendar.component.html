@@ -1,1 +1,197 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+<full-calendar #calendar [options]="calendarOptions"></full-calendar>
+<div class="content">
+    <div class="buttons is-centered">
+      <button (click)="OnClickCreateEvent()" class="button is-primary">CREATE EVENT</button>
+    </div>
+</div>
+
+<div id="create-modal" class="modal" [ngClass]="{'is-active':createModalIsActive}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add Event</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Start Date</label>
+            </div>
+            <div class="field-body">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditStartDateDay($event)" class="input" type="text" placeholder="Day (Ex: 16)" max="31" min="1" maxlength="2">
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditStartDateMonth($event)" class="input" type="text" placeholder="Month (Ex: 5)" max="12" min="1" maxlength="2">
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditStartDateYear($event)" class="input" type="text" placeholder="Year (Ex: 2020)" max="9999" min="1" maxlength="4">
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">End Date</label>
+            </div>
+            <div class="field-body">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateDay($event)" class="input" type="number" placeholder="Day (Ex: 16)" max="31" min="1">
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateMonth($event)" class="input" type="number" placeholder="Month (Ex: 5)" max="12" min="1">
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateYear($event)" class="input" type="number" placeholder="Year (Ex: 2020)" max="9999" min="1">
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Title</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control">
+                  <input (keyup)="OnEditTitle($event)" class="input" type="text" placeholder="Event Title" maxlength="200">
+                </p>
+              </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Description</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                    <textarea (keyup)="OnEditDescription($event)" class="textarea" placeholder="Event Description" maxlength="1000"></textarea>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <p style="text-align: right;">{{newEvent.description.length}}/1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </section>
+      <footer class="modal-card-foot">
+        <button (click)="OnClickAdd()" class="button is-success">Add</button>
+        <button (click)="OnClickClose()" class="button">Cancel</button>
+      </footer>
+    </div>
+    <button (click)="OnClickClose()" class="modal-close is-large" aria-label="close"></button>
+</div>
+
+
+
+<div id="edit-modal" class="modal" [ngClass]="{'is-active':editModalIsActive}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Edit Event</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Start Date</label>
+            </div>
+            <div class="field-body">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateDay($event)" class="input" type="number" placeholder="Day (Ex: 16)" max="31" min="1" value={{newEvent.start_time_day}}>
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateMonth($event)" class="input" type="number" placeholder="Month (Ex: 5)" max="12" min="1" value={{newEvent.start_time_month}}>
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateYear($event)" class="input" type="number" placeholder="Year (Ex: 2020)" max="9999" min="1" value={{newEvent.start_time_year}}>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">End Date</label>
+            </div>
+            <div class="field-body">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateDay($event)" class="input" type="number" placeholder="Day (Ex: 16)" max="31" min="1" value={{newEvent.end_time_day}}>
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateMonth($event)" class="input" type="number" placeholder="Month (Ex: 5)" max="12" min="1" value={{newEvent.end_time_month}}>
+                    </div>
+                    <div class="control is-expanded">
+                        <input (keyup)="OnEditEndDateYear($event)" class="input" type="number" placeholder="Year (Ex: 2020)" max="9999" min="1" value={{newEvent.end_time_year}}>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Title</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control">
+                  <input (keyup)="OnEditTitle($event)" class="input" type="text" placeholder="Event Title" maxlength="200" value={{newEvent.title}}>
+                </p>
+              </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Description</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                    <textarea (keyup)="OnEditDescription($event)" class="textarea" placeholder="Event Description" maxlength="1000" value={{newEvent.description}}></textarea>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <p style="text-align: right;">{{newEvent.description.length}}/1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </section>
+      <footer class="modal-card-foot">
+        <button (click)="OnClickUpdate()" class="button is-success">Update</button>
+        <button (click)="OnClickClose()" class="button">Cancel</button>
+        <button (click)="OnClickDelete()" class="button is-danger">Delete</button>
+      </footer>
+    </div>
+    <button (click)="OnClickClose()" class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<app-loading-bar *ngIf="isLoading"></app-loading-bar>
