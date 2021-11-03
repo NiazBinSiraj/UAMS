@@ -1,0 +1,151 @@
+<article class="panel scroll">
+    <p class="panel-heading" style="text-align: center;">
+      TODO LIST
+    </p>
+    <div class="panel-block">
+      <div class="level" style="width: 100%;">
+        <div class="level-left">
+          <div class="level-item">
+            
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <button (click)="OnClickNew()" class="button is-success">NEW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-block" *ngFor="let task of tasks; let i=index">
+      <div class="box" style="width: 100%;">
+        <div class="level">
+          <div (click)="OnClickTask(i)" class="level-left" style="cursor: pointer;">
+            <div class="level-item">
+              {{task.title}}
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <span (click)="OnClickCompleted(i)" class="icon" [ngClass]="{'has-text-done':task.completed, 'has-text-inactive': !task.completed}" style="cursor: pointer;">
+                <i class="far fa-check-circle"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</article>
+
+<div id="create-modal" class="modal" [ngClass]="{'is-active':createModalIsActive}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add Task</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Title</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control">
+                  <input (keyup)="OnEditTitle($event)" class="input" type="text" placeholder="Task Title" maxlength="200">
+                </p>
+              </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Description</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                    <textarea (keyup)="OnEditDescription($event)" class="textarea" placeholder="Task Description" maxlength="1000"></textarea>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <p style="text-align: right;">{{newTask.description.length}}/1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </section>
+      <footer class="modal-card-foot">
+        <button (click)="OnClickAdd()" class="button is-success">Add</button>
+        <button (click)="OnClickClose()" class="button">Cancel</button>
+      </footer>
+    </div>
+    <button (click)="OnClickClose()" class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="edit-modal" class="modal" [ngClass]="{'is-active':editModalIsActive}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Edit Task</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body">
+
+      <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Title</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input (keyup)="OnEditTitle($event)" class="input" type="text" placeholder="Task Title" value="{{newTask.title}}" maxlength="200">
+              </p>
+            </div>
+          </div>
+      </div>
+
+      <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Description</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                  <textarea (keyup)="OnEditDescription($event)" class="textarea" placeholder="Task Description" value="{{newTask.description}}" maxlength="1000"></textarea>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="field is-horizontal">
+          <div class="field-body">
+              <div class="field">
+                  <div class="control">
+                      <p style="text-align: right;">{{newTask.description.length}}/1000</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="OnClickSaveChanges()" class="button is-success">Save changes</button>
+      <button (click)="OnClickClose()" class="button">Cancel</button>
+      <button (click)="OnClickDelete()" class="button is-danger">Delete</button>
+    </footer>
+  </div>
+  <button (click)="OnClickClose()" class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<app-loading-bar *ngIf="isLoading"></app-loading-bar>

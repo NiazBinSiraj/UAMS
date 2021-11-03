@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
+  isLoading:boolean = false;
+  
   credential = {
     email : "",
     password: ""
@@ -34,6 +36,8 @@ export class LoginPageComponent implements OnInit {
   }
   OnClickLogin()
   {
+    this.isLoading = true;
+    
     this.authService.Login(this.credential).then((res) => {
       Appdata.instance.token = res.token;
       Appdata.instance.isloggedIn = true;
@@ -45,9 +49,12 @@ export class LoginPageComponent implements OnInit {
       Appdata.instance.user.email = res.user.email;
       Appdata.instance.user.password = res.user.password;
 
+      this.isLoading = false;
+
       this.router.navigate(["/home"]);
     }).catch((err) =>{
-      alert("Wrong Credentials");
+      this.isLoading = false;
+      window.alert("Wrong Credentials");
     });
   }
 }

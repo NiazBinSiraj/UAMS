@@ -28,11 +28,36 @@ export class AuthService {
     });
   }
 
+  private async requestWithAuthorization(method: string, url: string, data?: any) {
+    let headers:HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept' : 'application/json',
+      Authorization : 'Bearer ' + Appdata.instance.token
+    });
+
+    console.log('request ' + JSON.stringify(data));
+    console.log(headers.keys());
+    const result = this.http.request(method, url, {
+      headers: headers,
+      body: data,
+      responseType: 'json',
+      observe: 'body'
+    });
+    return new Promise<any>((resolve, reject) => {
+      result.subscribe(resolve as any, reject as any);
+    });
+  }
+
   Login(body: { email: string; password: string }) {
     return this.request('post', `${baseUrl}/api/login`,body);
   }
 
   Register(body: any) {
     return this.request('post', `${baseUrl}/api/register`,body);
+  }
+
+  Logout()
+  {
+    return this.requestWithAuthorization('post', `${baseUrl}/api/logout`);
   }
 }
