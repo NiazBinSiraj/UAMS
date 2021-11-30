@@ -1,0 +1,582 @@
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <h1 class="title" style="border: 10px; border-color: white;">PARADE STATE</h1>
+  <button [routerLink]=" '/home' " class="button">HOME</button>
+</div>
+
+<!--VIEW-->
+<div *ngIf="!isEdit" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <div class="field is-grouped" style="width: 50%; margin-top: 20px;">
+    <p class="control is-expanded">
+      <input (keyup)="OnEditDate($event)" class="input" type="text" placeholder="Date (e.g. 2021-11-29)">
+    </p>
+    <p class="control">
+      <a (click)="OnClickViewParadeState()" class="button is-info">
+        VIEW
+      </a>
+      <button (click)="OnClickCreate()" class="button" style="margin-left: 10px;">CREATE PARADE STATE</button>
+    </p>
+  </div>
+
+  <!--প্রাধিকার Table-->
+  <h1 class="title" style="text-align: center; color: white;">প্রাধিকার</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+          <th>মোট</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of paradeStates.total">
+          <td>{{state.company}}</td>
+          <td>{{state.officer}}</td>
+          <td>{{state.master_warent_officer}}</td>
+          <td>{{state.senior_warent_officer}}</td>
+          <td>{{state.warent_officer}}</td>
+          <td>{{state.sergent}}</td>
+          <td>{{state.corporal}}</td>
+          <td>{{state.lance_corporal}}</td>
+          <td>{{state.soldier}}</td>
+          <td>{{state.clerk}}</td>
+          <td>{{state.cook_u}}</td>
+          <td>{{state.cook_mess}}</td>
+          <td>{{state.trademan}}</td>
+          <td>{{state.nc_e}}</td>
+          <td>{{state.nc_u}}</td>
+          <td>{{state.songjukto}}</td>
+          <td>{{state.rt}}</td>
+          <td>{{state.sum}}</td>
+        </tr>
+        <tr>
+          <td>মোট</td>
+          <td>{{total_sum.officer}}</td>
+          <td>{{total_sum.master_warent_officer}}</td>
+          <td>{{total_sum.senior_warent_officer}}</td>
+          <td>{{total_sum.warent_officer}}</td>
+          <td>{{total_sum.sergent}}</td>
+          <td>{{total_sum.corporal}}</td>
+          <td>{{total_sum.lance_corporal}}</td>
+          <td>{{total_sum.soldier}}</td>
+          <td>{{total_sum.clerk}}</td>
+          <td>{{total_sum.cook_u}}</td>
+          <td>{{total_sum.cook_mess}}</td>
+          <td>{{total_sum.trademan}}</td>
+          <td>{{total_sum.nc_e}}</td>
+          <td>{{total_sum.nc_u}}</td>
+          <td>{{total_sum.songjukto}}</td>
+          <td>{{total_sum.rt}}</td>
+          <td>{{total_sum.sum}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--প্রাপ্ত Table-->
+  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">প্রাপ্ত</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+          <th>মোট</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of paradeStates.active">
+          <td>{{state.company}}</td>
+          <td>{{state.officer}}</td>
+          <td>{{state.master_warent_officer}}</td>
+          <td>{{state.senior_warent_officer}}</td>
+          <td>{{state.warent_officer}}</td>
+          <td>{{state.sergent}}</td>
+          <td>{{state.corporal}}</td>
+          <td>{{state.lance_corporal}}</td>
+          <td>{{state.soldier}}</td>
+          <td>{{state.clerk}}</td>
+          <td>{{state.cook_u}}</td>
+          <td>{{state.cook_mess}}</td>
+          <td>{{state.trademan}}</td>
+          <td>{{state.nc_e}}</td>
+          <td>{{state.nc_u}}</td>
+          <td>{{state.songjukto}}</td>
+          <td>{{state.rt}}</td>
+          <td>{{state.sum}}</td>
+        </tr>
+        <tr>
+          <td>মোট</td>
+          <td>{{active_sum.officer}}</td>
+          <td>{{active_sum.master_warent_officer}}</td>
+          <td>{{active_sum.senior_warent_officer}}</td>
+          <td>{{active_sum.warent_officer}}</td>
+          <td>{{active_sum.sergent}}</td>
+          <td>{{active_sum.corporal}}</td>
+          <td>{{active_sum.lance_corporal}}</td>
+          <td>{{active_sum.soldier}}</td>
+          <td>{{active_sum.clerk}}</td>
+          <td>{{active_sum.cook_u}}</td>
+          <td>{{active_sum.cook_mess}}</td>
+          <td>{{active_sum.trademan}}</td>
+          <td>{{active_sum.nc_e}}</td>
+          <td>{{active_sum.nc_u}}</td>
+          <td>{{active_sum.songjukto}}</td>
+          <td>{{active_sum.rt}}</td>
+          <td>{{active_sum.sum}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--উপস্থিত Table-->
+  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">উপস্থিত</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+          <th>মোট</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of paradeStates.present">
+          <td>{{state.company}}</td>
+          <td>{{state.officer}}</td>
+          <td>{{state.master_warent_officer}}</td>
+          <td>{{state.senior_warent_officer}}</td>
+          <td>{{state.warent_officer}}</td>
+          <td>{{state.sergent}}</td>
+          <td>{{state.corporal}}</td>
+          <td>{{state.lance_corporal}}</td>
+          <td>{{state.soldier}}</td>
+          <td>{{state.clerk}}</td>
+          <td>{{state.cook_u}}</td>
+          <td>{{state.cook_mess}}</td>
+          <td>{{state.trademan}}</td>
+          <td>{{state.nc_e}}</td>
+          <td>{{state.nc_u}}</td>
+          <td>{{state.songjukto}}</td>
+          <td>{{state.rt}}</td>
+          <td>{{state.sum}}</td>
+        </tr>
+        <tr>
+          <td>মোট</td>
+          <td>{{present_sum.officer}}</td>
+          <td>{{present_sum.master_warent_officer}}</td>
+          <td>{{present_sum.senior_warent_officer}}</td>
+          <td>{{present_sum.warent_officer}}</td>
+          <td>{{present_sum.sergent}}</td>
+          <td>{{present_sum.corporal}}</td>
+          <td>{{present_sum.lance_corporal}}</td>
+          <td>{{present_sum.soldier}}</td>
+          <td>{{present_sum.clerk}}</td>
+          <td>{{present_sum.cook_u}}</td>
+          <td>{{present_sum.cook_mess}}</td>
+          <td>{{present_sum.trademan}}</td>
+          <td>{{present_sum.nc_e}}</td>
+          <td>{{present_sum.nc_u}}</td>
+          <td>{{present_sum.songjukto}}</td>
+          <td>{{present_sum.rt}}</td>
+          <td>{{present_sum.sum}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--অনুপস্থিত Table-->
+  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">অনুপস্থিত</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+          <th>মোট</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of paradeStates.absence">
+          <td>{{state.company}}</td>
+          <td>{{state.officer}}</td>
+          <td>{{state.master_warent_officer}}</td>
+          <td>{{state.senior_warent_officer}}</td>
+          <td>{{state.warent_officer}}</td>
+          <td>{{state.sergent}}</td>
+          <td>{{state.corporal}}</td>
+          <td>{{state.lance_corporal}}</td>
+          <td>{{state.soldier}}</td>
+          <td>{{state.clerk}}</td>
+          <td>{{state.cook_u}}</td>
+          <td>{{state.cook_mess}}</td>
+          <td>{{state.trademan}}</td>
+          <td>{{state.nc_e}}</td>
+          <td>{{state.nc_u}}</td>
+          <td>{{state.songjukto}}</td>
+          <td>{{state.rt}}</td>
+          <td>{{state.sum}}</td>
+        </tr>
+        <tr>
+          <td>মোট</td>
+          <td>{{absence_sum.officer}}</td>
+          <td>{{absence_sum.master_warent_officer}}</td>
+          <td>{{absence_sum.senior_warent_officer}}</td>
+          <td>{{absence_sum.warent_officer}}</td>
+          <td>{{absence_sum.sergent}}</td>
+          <td>{{absence_sum.corporal}}</td>
+          <td>{{absence_sum.lance_corporal}}</td>
+          <td>{{absence_sum.soldier}}</td>
+          <td>{{absence_sum.clerk}}</td>
+          <td>{{absence_sum.cook_u}}</td>
+          <td>{{absence_sum.cook_mess}}</td>
+          <td>{{absence_sum.trademan}}</td>
+          <td>{{absence_sum.nc_e}}</td>
+          <td>{{absence_sum.nc_u}}</td>
+          <td>{{absence_sum.songjukto}}</td>
+          <td>{{absence_sum.rt}}</td>
+          <td>{{absence_sum.sum}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--অনুপস্থিতির বিবরণ Table-->
+  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">অনুপস্থিতির বিবরণ</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>বাৎসরিক ছুটি</th>
+          <th>সামরিক ছুটি</th>
+          <th>বিনোদন ছুটি</th>
+          <th>ডাক্তারী ছুটি</th>
+          <th>সামরিক ছুটি</th>
+          <th>যোগদান ছুটি</th>
+          <th>সাপ্তাহিক ছুটি</th>
+          <th>কোর্স</th>
+          <th>ক্যাডার</th>
+          <th>সংযুক্ত</th>
+          <th>কমান্ড</th>
+          <th>হাসপাতাল</th>
+          <th>ও এস এল</th>
+          <th>এ ডব্লিউ এল</th>
+          <th>ডিমর</th>
+          <th>আবাসন</th>
+          <th>মোট</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of paradeStates.cause_of_absence">
+          <td>{{state.company}}</td>
+          <td>{{state.yearly}}</td>
+          <td>{{state.temporary}}</td>
+          <td>{{state.entertainment}}</td>
+          <td>{{state.doctoral}}</td>
+          <td>{{state.joining}}</td>
+          <td>{{state.weekly}}</td>
+          <td>{{state.course}}</td>
+          <td>{{state.cadre}}</td>
+          <td>{{state.join}}</td>
+          <td>{{state.command}}</td>
+          <td>{{state.hospital}}</td>
+          <td>{{state.osl}}</td>
+          <td>{{state.awl}}</td>
+          <td>{{state.dimb}}</td>
+          <td>{{state.accommodation}}</td>
+          <td>{{state.sum}}</td>
+        </tr>
+        <tr>
+          <td>মোট</td>
+          <td>{{cause_of_absence_sum.yearly}}</td>
+          <td>{{cause_of_absence_sum.temporary}}</td>
+          <td>{{cause_of_absence_sum.entertainment}}</td>
+          <td>{{cause_of_absence_sum.doctoral}}</td>
+          <td>{{cause_of_absence_sum.joining}}</td>
+          <td>{{cause_of_absence_sum.weekly}}</td>
+          <td>{{cause_of_absence_sum.course}}</td>
+          <td>{{cause_of_absence_sum.cadre}}</td>
+          <td>{{cause_of_absence_sum.join}}</td>
+          <td>{{cause_of_absence_sum.command}}</td>
+          <td>{{cause_of_absence_sum.hospital}}</td>
+          <td>{{cause_of_absence_sum.osl}}</td>
+          <td>{{cause_of_absence_sum.awl}}</td>
+          <td>{{cause_of_absence_sum.dimb}}</td>
+          <td>{{cause_of_absence_sum.accommodation}}</td>
+          <td>{{cause_of_absence_sum.sum}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!--CREATE-->
+<div *ngIf="isEdit" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <div class="buttons is-centered">
+    <button (click)="OnClickView()" class="button">VIEW PARADE STATE</button>
+  </div>
+
+  <input (keyup)="OnEditDate($event)" class="input" type="text" placeholder="Date (e.g. YYYY-MM-DD)"
+    style="width: 50%;">
+
+  <!--প্রাধিকার Table-->
+  <h1 class="title" style="text-align: center; color: white;">প্রাধিকার</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of company; let i=index;">
+          <td>{{state}}</td>
+          <td><input class="input" type="text" value={{total[i].officer}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].master_warent_officer}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].senior_warent_officer}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].warent_officer}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].sergent}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].corporal}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].lance_corporal}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].soldier}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].clerk}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].cook_u}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].cook_mess}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].trademan}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].nc_e}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].nc_u}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].songjukto}} readonly></td>
+          <td><input class="input" type="text" value={{total[i].rt}} readonly></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--প্রাপ্ত Table-->
+  <h1 class="title" style="text-align: center; color: black;">প্রাপ্ত</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of company; let i=index;">
+          <td>{{state}}</td>
+          <td><input (keyup)="OnEditActiveO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveMWO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveSWO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveWO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveSGT($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveCPL($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveCPL($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveSLD($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveCLRK($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveCOOKU($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveCOOKMESS($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveTRADEMAN($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveNCE($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveNCU($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveSONJUKTO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditActiveRT($event, i)" class="input" type="text"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--উপস্থিত Table-->
+  <h1 class="title" style="text-align: center; color: black;">উপস্থিত</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>অফিসার</th>
+          <th>মাঃওয়াঃঅফিঃ</th>
+          <th>সিঃওয়াঃঅফিঃ</th>
+          <th>ওয়াঃঅফিঃ</th>
+          <th>সার্জেন্ট</th>
+          <th>কর্পোরাল</th>
+          <th>ল্যাঃ কর্পোরাল</th>
+          <th>সৈনিক</th>
+          <th>করণিক</th>
+          <th>পাঁচক(ইউ)</th>
+          <th>পাঁচক(মেস)</th>
+          <th>ট্রেডম্যান</th>
+          <th>এনিস(ই)</th>
+          <th>এনিস(ইউ)</th>
+          <th>সংযুক্ত</th>
+          <th>আরটি</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of company; let i=index;">
+          <td>{{state}}</td>
+          <td><input (keyup)="OnEditPresenceO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceMWO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceSWO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceWO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceSGT($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceCPL($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceCPL($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceSLD($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceCLRK($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceCOOKU($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceCOOKMESS($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceTRADEMAN($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceNCE($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceNCU($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceSONJUKTO($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditPresenceRT($event, i)" class="input" type="text"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--অনুপস্থিতির বিবরণ Table-->
+  <h1 class="title" style="text-align: center; color: black;">অনুপস্থিতির বিবরণ</h1>
+  <div class="table-container">
+    <table class="table is-bordered">
+      <thead>
+        <tr>
+          <th>কোম্পানী</th>
+          <th>বাৎসরিক ছুটি</th>
+          <th>সামরিক ছুটি</th>
+          <th>বিনোদন ছুটি</th>
+          <th>ডাক্তারী ছুটি</th>
+          <th>যোগদান ছুটি</th>
+          <th>সাপ্তাহিক ছুটি</th>
+          <th>কোর্স</th>
+          <th>ক্যাডার</th>
+          <th>সংযুক্ত</th>
+          <th>কমান্ড</th>
+          <th>হাসপাতাল</th>
+          <th>ও এস এল</th>
+          <th>এ ডব্লিউ এল</th>
+          <th>ডিমর</th>
+          <th>আবাসন</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of company; let i=index;">
+          <td>{{state}}</td>
+          <td><input (keyup)="OnEditYearly($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditTemporary($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditEntertainment($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditDoctoral($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditJoining($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditWeekly($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditCourse($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditCadre($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditJoin($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditCommand($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditHospital($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditOSL($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditAWL($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditDIMB($event, i)" class="input" type="text"></td>
+          <td><input (keyup)="OnEditAccomodation($event, i)" class="input" type="text"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button (click)="OnClickSubmit()" class="button is-primary" style="margin-bottom: 20px;">SUBMIT</button>
+</div>
+
+<!--Loading-->
+<app-loading-bar *ngIf="isRequesting"></app-loading-bar>
