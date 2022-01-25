@@ -12,7 +12,8 @@ const routes: Routes = [
   {path: '', redirectTo: "/login", pathMatch: 'full'},
   { path: 'home', loadChildren: () => import('./pages/private/home-page/home-page.module').then(m => m.HomePageModule) },
   { path: 'myprofile', loadChildren: () => import('./pages/private/myprofile-page/myprofile-page.module').then(m => m.MyprofilePageModule) },
-  { path: 'paradestate', loadChildren: () => import('./pages/private/paradestate-page/paradestate-page.module').then(m => m.ParadestatePageModule) }
+  { path: 'paradestate', loadChildren: () => import('./pages/private/paradestate-page/paradestate-page.module').then(m => m.ParadestatePageModule) },
+  { path: 'offices', loadChildren: () => import('./pages/private/offices-page/offices-page.module').then(m => m.OfficesPageModule) }
 ];
 
 @NgModule({
