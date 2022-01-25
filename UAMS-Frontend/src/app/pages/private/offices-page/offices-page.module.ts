@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OfficesPageRoutingModule } from './offices-page-routing.module';
 import { OfficesPageComponent } from './offices-page.component';
+import { WorkCategoryModule } from './work-category/work-category.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { OfficesPageComponent } from './offices-page.component';
   ],
   imports: [
     CommonModule,
-    OfficesPageRoutingModule
+    OfficesPageRoutingModule,
+    WorkCategoryModule
   ]
 })
 export class OfficesPageModule { }
