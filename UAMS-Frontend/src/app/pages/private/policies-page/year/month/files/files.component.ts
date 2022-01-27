@@ -1,8 +1,8 @@
-import { FileService } from './../../../../../../../services/offices/file/file.service';
-import { Appdata } from 'src/Appdata';
-import { Files } from './../../../../../../../models/files.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Files } from 'src/app/models/files.model';
+import { FileService } from 'src/app/services/offices/file/file.service';
+import { Appdata } from 'src/Appdata';
 
 @Component({
   selector: 'app-files',
@@ -14,7 +14,7 @@ export class FilesComponent implements OnInit {
   baseUrl = Appdata.instance.backendURL;
   requesting:boolean = false;
 
-  officeType:string|null = "";
+  officeType:string|null = "Policy";
   workCategory:string|null = "";
   year:string|null = "";
   month:string|null = "";
@@ -26,7 +26,6 @@ export class FilesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fileService:FileService) { }
 
   ngOnInit(): void {
-    this.officeType = this.route.snapshot.paramMap.get('id');
     this.workCategory = this.route.snapshot.paramMap.get('category');
     this.year = this.route.snapshot.paramMap.get('year');
     this.month = this.route.snapshot.paramMap.get('month');

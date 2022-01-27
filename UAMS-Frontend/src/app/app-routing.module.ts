@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/private/home-page/home-page.module').then(m => m.HomePageModule) },
   { path: 'myprofile', loadChildren: () => import('./pages/private/myprofile-page/myprofile-page.module').then(m => m.MyprofilePageModule) },
   { path: 'paradestate', loadChildren: () => import('./pages/private/paradestate-page/paradestate-page.module').then(m => m.ParadestatePageModule) },
-  { path: 'offices', loadChildren: () => import('./pages/private/offices-page/offices-page.module').then(m => m.OfficesPageModule) }
+  { path: 'offices', loadChildren: () => import('./pages/private/offices-page/offices-page.module').then(m => m.OfficesPageModule) },
+  { path: 'Policy', loadChildren: () => import('./pages/private/policies-page/policies-page.module').then(m => m.PoliciesPageModule) },
+  { path: 'events', loadChildren: () => import('./pages/private/event-page/event-page.module').then(m => m.EventPageModule) }
 ];
 
 @NgModule({

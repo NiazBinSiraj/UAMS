@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PoliciesPageRoutingModule } from './policies-page-routing.module';
 import { PoliciesPageComponent } from './policies-page.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PoliciesPageComponent } from './policies-page.component';
   ],
   imports: [
     CommonModule,
-    PoliciesPageRoutingModule
+    PoliciesPageRoutingModule,
+    SharedModule
   ]
 })
 export class PoliciesPageModule { }

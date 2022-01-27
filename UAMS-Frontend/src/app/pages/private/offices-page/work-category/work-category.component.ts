@@ -1,3 +1,4 @@
+import { Appdata } from 'src/Appdata';
 import { Works } from './../../../../models/works.model';
 import { WorkService } from './../../../../services/offices/work/work.service';
 import { Component, OnInit } from '@angular/core';
@@ -69,6 +70,10 @@ export class WorkCategoryComponent implements OnInit {
   OnEditWork(event:any)
   {
     this.newWork.title = event.target.value;
+  }
+  OnClickWork(i:number, j:number)
+  {
+    Appdata.instance.work_id = this.distributedWorks[i][j].id;
   }
 
   DistributeWorks()

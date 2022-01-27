@@ -1,9 +1,9 @@
 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <h1 class="title">OFFICES/{{officeType}}/{{workCategory}}/{{year}}/{{month}}</h1>
+    <h1 class="title">POLICY/{{workCategory}}/{{year}}/{{month}}</h1>
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
         <button [routerLink]=" '/home' " class="button">Home</button>
-        <button [routerLink]=" '/offices' " class="button" style="margin-left: 5px; margin-right: 5px;">Office</button>
+        <button [routerLink]=" '/Policy' " class="button" style="margin-left: 5px; margin-right: 5px;">Policy</button>
         <div class="control" style="margin-left: 5px; margin-right: 5px;">
             <input (change)="fileChange($event)" class="input" type="file" placeholder="Add New Category">
         </div>
