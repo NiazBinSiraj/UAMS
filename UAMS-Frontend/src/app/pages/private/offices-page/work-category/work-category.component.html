@@ -1,8 +1,9 @@
 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <h1 class="title">POLICY</h1>
+    <h1 class="title">OFFICES/{{officeType}}</h1>
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
         <button [routerLink]=" '/home' " class="button">Home</button>
+        <button [routerLink]=" '/offices' " class="button" style="margin-left: 5px;">Office</button> 
         <div class="control" style="margin-left: 5px; margin-right: 5px;">
             <input (keyup)="OnEditWork($event)" class="input" type="text" placeholder="Add New Category" value="{{newWork.title}}">
         </div>
@@ -17,7 +18,7 @@
                         <span class="icon">
                             <i class="fas fa-folder-open"></i>
                         </span>
-                        <span (click)="OnClickWork(i,j)" [routerLink]="['/work-category',workCol.title]" style="color: white;">{{workCol.title}}</span>
+                        <span (click)="OnClickWork(i,j)" [routerLink]="['/offices',officeType,'work-category',workCol.title]" style="color: white;">{{workCol.title}}</span>
                     </span>
                 </td>
             </tr>

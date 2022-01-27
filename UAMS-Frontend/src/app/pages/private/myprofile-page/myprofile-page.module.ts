@@ -29,6 +29,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule,
     MyprofilePageRoutingModule,
     SharedModule
+  ],
+  exports:[
+    EventCalendarComponent
   ]
 })
 export class MyprofilePageModule { }

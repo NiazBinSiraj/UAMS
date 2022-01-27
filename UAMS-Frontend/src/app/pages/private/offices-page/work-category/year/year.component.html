@@ -1,23 +1,20 @@
 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <h1 class="title">POLICY</h1>
+    <h1 class="title">OFFICES/{{officeType}}/{{workCategory}}</h1>
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
         <button [routerLink]=" '/home' " class="button">Home</button>
-        <div class="control" style="margin-left: 5px; margin-right: 5px;">
-            <input (keyup)="OnEditWork($event)" class="input" type="text" placeholder="Add New Category" value="{{newWork.title}}">
-        </div>
-        <button (click)="OnClickAdd()" class="button is-success">Add</button>
+        <button [routerLink]=" '/offices' " class="button" style="margin-left: 5px; margin-right: 5px;">Office</button>
     </div>
 
     <table class="table is-bordered" style="width: 95%; background-color: transparent;">
         <tbody>
-            <tr *ngFor="let workRow of distributedWorks; let i=index;">
-                <td *ngFor="let workCol of workRow; let j=index;" class="folder">
+            <tr *ngFor="let yearRow of years;">
+                <td *ngFor="let yearCol of yearRow" class="folder">
                     <span class="icon-text folder-icon">
                         <span class="icon">
                             <i class="fas fa-folder-open"></i>
                         </span>
-                        <span (click)="OnClickWork(i,j)" [routerLink]="['/work-category',workCol.title]" style="color: white;">{{workCol.title}}</span>
+                        <span [routerLink]="['year',yearCol]" style="color: white;">{{yearCol}}</span>
                     </span>
                 </td>
             </tr>
@@ -25,6 +22,3 @@
     </table>
 
 </div>
-
-<!--Loading-->
-<app-loading-bar *ngIf="requesting"></app-loading-bar>

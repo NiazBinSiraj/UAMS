@@ -1,1 +1,49 @@
-<p>offices-page works!</p>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 class="title">OFFICES</h1>
+
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
+        <button [routerLink]=" '/home' " class="button">Home</button>
+    </div>
+
+    <table class="table is-bordered" style="width: 50%; height: 300px; background-color: transparent;">
+        <tbody>
+            <tr>
+                <td class="folder">
+                    <span class="icon-text folder-icon">
+                        <span class="icon">
+                            <i class="fas fa-folder-open"></i>
+                        </span>
+                        <span [routerLink]=" '/offices/A Office' " style="color: white;">A OFFICE</span>
+                    </span>
+                </td>
+                <td class="folder">
+                    <span class="icon-text folder-icon">
+                        <span class="icon">
+                            <i class="fas fa-folder-open"></i>
+                        </span>
+                        <span [routerLink]=" '/offices/Q Office' " style="color: white;">Q OFFICE</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="folder">
+                    <span class="icon-text folder-icon">
+                        <span class="icon">
+                            <i class="fas fa-folder-open"></i>
+                        </span>
+                        <span [routerLink]=" '/offices/G Office' " style="color: white;">G OFFICE</span>
+                    </span>
+                </td>
+                <td class="folder">
+                    <span class="icon-text folder-icon">
+                        <span class="icon">
+                            <i class="fas fa-folder-open"></i>
+                        </span>
+                        <span [routerLink]=" '/offices/Account Office' " style="color: white;">ACCOUNT OFFICE</span>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

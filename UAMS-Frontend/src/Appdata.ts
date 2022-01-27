@@ -10,4 +10,7 @@ export class Appdata{
     isloggedIn:boolean = false;
 
     user:User = new User;
+
+    //Files
+    work_id:number = -1;
 }

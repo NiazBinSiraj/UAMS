@@ -1,0 +1,43 @@
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 class="title">POLICY/{{workCategory}}/{{year}}/{{month}}</h1>
+
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
+        <button [routerLink]=" '/home' " class="button">Home</button>
+        <button [routerLink]=" '/Policy' " class="button" style="margin-left: 5px; margin-right: 5px;">Policy</button>
+        <div class="control" style="margin-left: 5px; margin-right: 5px;">
+            <input (change)="fileChange($event)" class="input" type="file" placeholder="Add New Category">
+        </div>
+        <button (click)="OnClickUpload()" class="button">Upload</button>
+    </div>
+
+    <table class="table is-bordered" style="width: 95%; background-color: transparent;">
+        <tbody>
+            <tr *ngFor="let file of files; let i=index;">
+                <td style="width: 10%;">
+                    <p style="color: white;">{{i+1}}.</p>
+                </td>
+                <td style="width: 80%;">
+                    <a [href]=" baseUrl + '/' + file.file " target="_blank">
+                        <span class="icon-text">
+                            <span class="icon" style="color: rgb(211, 0, 0); font-size: larger;">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span style="color: white;">{{file.name}}</span>
+                        </span>
+                    </a>
+                </td>
+                <td style="width: 10%;">
+                    <button (click)="DeleteFile(i)" class="button" style="background-color: rgb(187, 0, 0); color: white; border: 0px;">
+                        <span class="icon">
+                          <i class="fas fa-trash-alt"></i>
+                        </span>
+                        <span>Delete</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<app-loading-bar *ngIf="requesting"></app-loading-bar>

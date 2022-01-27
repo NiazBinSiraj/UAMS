@@ -1,17 +1,18 @@
+import { Appdata } from 'src/Appdata';
+import { Works } from './../../../../models/works.model';
+import { WorkService } from './../../../../services/offices/work/work.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Works } from 'src/app/models/works.model';
-import { WorkService } from 'src/app/services/offices/work/work.service';
-import { Appdata } from 'src/Appdata';
 
 @Component({
-  selector: 'app-policies-page',
-  templateUrl: './policies-page.component.html',
-  styleUrls: ['./policies-page.component.scss']
+  selector: 'app-work-category',
+  templateUrl: './work-category.component.html',
+  styleUrls: ['./work-category.component.scss']
 })
-export class PoliciesPageComponent implements OnInit {
+export class WorkCategoryComponent implements OnInit {
+
   requesting:boolean = false;
-  officeType:string|null = "Policy";
+  officeType:string|null = "";
 
   newWork:Works = new Works();
   works:Works[] = [];
@@ -21,6 +22,7 @@ export class PoliciesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.newWork.title = "";
+    this.officeType = this.route.snapshot.paramMap.get('id');
     this.GetAllWorks();
   }
 
@@ -80,7 +82,7 @@ export class PoliciesPageComponent implements OnInit {
     let temp:Works[] = [];
     for(let i=0; i<this.works.length; i++)
     {
-      if(i%3 == 0 && i != 0)
+      if(i%4 == 0 && i != 0)
       {
         this.distributedWorks.push(temp);
         temp = [];
@@ -90,4 +92,5 @@ export class PoliciesPageComponent implements OnInit {
     if(temp.length > 0) this.distributedWorks.push(temp);
     console.log(this.distributedWorks);
   }
+
 }
