@@ -1,0 +1,95 @@
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 class="title">DAAK FILES/{{year}}/{{month}}</h1>
+
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
+        <button [routerLink]=" '/home' " class="button">Home</button>
+        <button [routerLink]=" '/daakfiles' " class="button" style="margin-left: 5px; margin-right: 5px;">Daak Files</button>
+        <div class="control" style="margin-left: 5px; margin-right: 5px;">
+            <input (change)="fileChange($event)" class="input" type="file" placeholder="Add New Category">
+        </div>
+        <div class="select" style="margin-right: 5px;">
+            <select>
+              <option *ngFor="let day of days">{{day}}</option>
+            </select>
+          </div>
+        <button (click)="OnClickUpload()" class="button">Upload</button>
+    </div>
+
+    <table class="table is-bordered" style="width: 95%; background-color: transparent;">
+        <tbody>
+            <tr *ngFor="let file of files; let i=index;">
+                <td style="width: 10%;">
+                    <p style="color: white;">{{i+1}}.</p>
+                </td>
+                <td style="width: 70%;">
+                    <a [href]=" baseUrl + '/' + file.file " target="_blank">
+                        <span class="icon-text">
+                            <span class="icon" style="color: rgb(211, 0, 0); font-size: larger;">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span style="color: white;">{{file.name}}</span>
+                        </span>
+                    </a>
+                </td>
+                <td style="width: 10%;">
+                    <button [disabled]="file.owner === 'EVERYONE' " (click)="OnClickTransfer(i)" class="button" style="background-color: rgb(0, 187, 16); color: white; border: 0px;">
+                        <span class="icon">
+                          <i class="fas fa-exchange-alt"></i>
+                        </span>
+                        <span>Transfer</span>
+                    </button>
+                </td>
+                <td style="width: 10%;">
+                    <button (click)="DeleteFile(i)" class="button" style="background-color: rgb(187, 0, 0); color: white; border: 0px;">
+                        <span class="icon">
+                          <i class="fas fa-trash-alt"></i>
+                        </span>
+                        <span>Delete</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<app-loading-bar *ngIf="requesting"></app-loading-bar>
+
+
+<!--Transfer Modal-->
+<div class="modal" [ngClass]="{'is-active': transferModal}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">File Transfer</p>
+        <button (click)="OnClickCancel()" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Content ... -->
+        <div>
+            <div class="field">
+                <label class="label">Appointment</label>
+                <div class="control">
+                    <div class="select">
+                        <select (change)="OnSelectAppt($event)">
+                          <option *ngFor="let appt of appointments">{{appt}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                  <input (keyup)="OnEditMessage($event)" class="input" type="text" placeholder="Message" value="{{message}}">
+                </div>
+            </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button (click)="OnClickDone()" class="button is-success">Done</button>
+        <button (click)="OnClickCancel()" class="button is-danger">Cancel</button>
+        <button *ngIf="userAppt == 'CO' " (click)="OnClickAvailable()" class="button is-success">Available For Everyone</button>
+      </footer>
+    </div>
+  </div>

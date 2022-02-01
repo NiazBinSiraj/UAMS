@@ -1,8 +1,8 @@
 export class User {
     id:number = -1;
-    appointment:string = "Dummy Appt";
+    appointment:string = "";
     army_number:number = -1;
-    name:string = "Dummy Name";
-    email:string = "Dummy@email.com";
-    password:string = "Dummy Password";
+    name:string = "";
+    email:string = "";
+    password:string = "";
 }

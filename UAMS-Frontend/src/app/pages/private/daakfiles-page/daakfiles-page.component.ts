@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-daakfiles-page',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DaakfilesPageComponent implements OnInit {
 
-  constructor() { }
+
+  years = [
+    ["2017", "2018", "2019", "2020"],
+    ["2021", "2022", "2023", "2024"]
+  ];
+  
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }

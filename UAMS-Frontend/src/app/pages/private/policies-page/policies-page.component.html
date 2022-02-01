@@ -13,12 +13,25 @@
         <tbody>
             <tr *ngFor="let workRow of distributedWorks; let i=index;">
                 <td *ngFor="let workCol of workRow; let j=index;" class="folder">
-                    <span class="icon-text folder-icon">
-                        <span class="icon">
-                            <i class="fas fa-folder-open"></i>
-                        </span>
-                        <span (click)="OnClickWork(i,j)" [routerLink]="['/work-category',workCol.title]" style="color: white;">{{workCol.title}}</span>
-                    </span>
+                    <table class="table is-fullwidth" style="background-color: transparent;">
+                        <tr>
+                            <td style="color: rgb(243, 198, 0);">
+                                <span class="icon-text folder-icon">
+                                    <span class="icon">
+                                        <i class="fas fa-folder-open"></i>
+                                    </span>
+                                    <span (click)="OnClickWork(i,j)" [routerLink]="['/work-category',workCol.title]" style="color: white;">{{workCol.title}}</span>
+                                </span>
+                            </td>
+                            <td style="width: 20%;">
+                                <button (click)="OnClickDeleteFolder(i,j)" class="button is-danger">
+                                    <span class="icon">
+                                      <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </tbody>

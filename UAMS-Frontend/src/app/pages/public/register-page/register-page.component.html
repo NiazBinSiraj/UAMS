@@ -9,11 +9,16 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <input (keyup)="OnEditAppointment($event)" class="input" type="text" placeholder="Appointment">
+
+                        <div class="select" style="width: 100%;">
+                            <select (change)="OnEditAppointment($event)" style="width: 100%;">
+                                <option *ngFor="let appt of appointments">{{appt}}</option>
+                            </select>
+                        </div>
                     </div>
-                    <!-- <p class="help is-danger">
-                  This field is required
-                </p> -->
+                    <p *ngIf="status === 'APPT' " class="help is-danger">
+                  *This field is required
+                </p>
                 </div>
             </div>
         </div>
@@ -27,9 +32,9 @@
                     <div class="control">
                         <input (keyup)="OnEditArmyNumber($event)" class="input" type="text" placeholder="Army Number">
                     </div>
-                    <!-- <p class="help is-danger">
+                    <p *ngIf="status === 'ARMYN' " class="help is-danger">
           This field is required
-        </p> -->
+        </p>
                 </div>
             </div>
         </div>
@@ -42,9 +47,9 @@
                     <div class="control">
                         <input (keyup)="OnEditName($event)" class="input" type="text" placeholder="Name">
                     </div>
-                    <!-- <p class="help is-danger">
+                    <p *ngIf="status === 'NAME' " class="help is-danger">
           This field is required
-        </p> -->
+        </p>
                 </div>
             </div>
         </div>
@@ -57,9 +62,9 @@
                     <div class="control">
                         <input (keyup)="OnEditEmail($event)" class="input" type="text" placeholder="Email">
                     </div>
-                    <!-- <p class="help is-danger">
+                    <p *ngIf="status === 'EMAIL' " class="help is-danger">
           This field is required
-        </p> -->
+        </p>
                 </div>
             </div>
         </div>
@@ -72,15 +77,17 @@
                     <div class="control">
                         <input (keyup)="OnEditPassword($event)" class="input" type="password" placeholder="Password">
                     </div>
-                    <!-- <p class="help is-danger">
+                    <p *ngIf="status === 'PASS' " class="help is-danger">
           This field is required
-        </p> -->
+        </p>
                 </div>
             </div>
         </div>
         <div class="buttons">
-            <button [routerLink] = " '/login' " class="button" style="background-color: #5dac1c; color: black;"><b>Login</b></button>
-            <button (click)="OnClickRegister()" class="button" style="background-color: #5dac1c; color: black;"><b>Register</b></button>
+            <button [routerLink]=" '/login' " class="button"
+                style="background-color: #5dac1c; color: black;"><b>Login</b></button>
+            <button (click)="OnClickRegister()" class="button"
+                style="background-color: #5dac1c; color: black;"><b>Register</b></button>
         </div>
     </div>
 </div>

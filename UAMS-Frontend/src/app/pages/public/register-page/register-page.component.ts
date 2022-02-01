@@ -12,15 +12,19 @@ import { Router } from '@angular/router';
 export class RegisterPageComponent implements OnInit {
 
   isLoading:boolean = false;
-  
   user:User = new User;
-  
+  appointments:string[] = ["DUTY CLK", "HEAD CLK", "ADJT", "QM", "A COY COMD", "B COY COMD", "C COY COMD", "D COY COMD", "HQ COY COMD", "2IC", "CO", "ADMIN"];
+  status:string = "OK";
   constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     if(Appdata.instance.isloggedIn)
     {
       this.router.navigate(["/home"]);
+    }
+    else
+    {
+      this.user.appointment = "DUTY CLK";
     }
   }
 
@@ -46,6 +50,34 @@ export class RegisterPageComponent implements OnInit {
 
   OnClickRegister()
   {
+    if(this.user.appointment == "")
+    {
+      this.status = "APPT";
+      return;
+    }
+    else if(this.user.army_number == -1 || this.user.army_number.toString() == "")
+    {
+      this.status = "ARMYN";
+      return;
+    }
+    else if(this.user.name == "")
+    {
+      this.status = "NAME";
+      return;
+    }
+    else if(this.user.email == "")
+    {
+      this.status = "EMAIL";
+      return;
+    }
+    else if(this.user.password == "")
+    {
+      this.status = "PASS";
+      return;
+    }
+    else this.status = "OK";
+    
+    
     this.isLoading = true;
     
     let content = {
@@ -57,6 +89,7 @@ export class RegisterPageComponent implements OnInit {
     };
     console.log(content);
     this.authService.Register(content).then((res) => {
+      this.user = new User();
       Appdata.instance.token = res.token;
       this.isLoading = false;
       this.router.navigate(['/login']);

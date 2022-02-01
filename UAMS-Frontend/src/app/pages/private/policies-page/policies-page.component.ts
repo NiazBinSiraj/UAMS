@@ -90,4 +90,17 @@ export class PoliciesPageComponent implements OnInit {
     if(temp.length > 0) this.distributedWorks.push(temp);
     console.log(this.distributedWorks);
   }
+
+  async OnClickDeleteFolder(i:number, j:number)
+  {
+    this.requesting = true;
+    await this.workService.Delete(this.distributedWorks[i][j].id).then((res) =>{
+      this.requesting = false;
+      this.GetAllWorks();
+    }).catch((err) =>{
+      console.log(err);
+      this.requesting = false;
+      alert("ERROR");
+    });
+  }
 }

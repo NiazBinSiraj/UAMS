@@ -82,7 +82,7 @@ export class WorkCategoryComponent implements OnInit {
     let temp:Works[] = [];
     for(let i=0; i<this.works.length; i++)
     {
-      if(i%4 == 0 && i != 0)
+      if(i%3 == 0 && i != 0)
       {
         this.distributedWorks.push(temp);
         temp = [];
@@ -91,6 +91,19 @@ export class WorkCategoryComponent implements OnInit {
     }
     if(temp.length > 0) this.distributedWorks.push(temp);
     console.log(this.distributedWorks);
+  }
+
+  async OnClickDeleteFolder(i:number, j:number)
+  {
+    this.requesting = true;
+    await this.workService.Delete(this.distributedWorks[i][j].id).then((res) =>{
+      this.requesting = false;
+      this.GetAllWorks();
+    }).catch((err) =>{
+      console.log(err);
+      this.requesting = false;
+      alert("ERROR");
+    });
   }
 
 }

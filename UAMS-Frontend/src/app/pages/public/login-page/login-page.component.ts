@@ -49,6 +49,8 @@ export class LoginPageComponent implements OnInit {
       Appdata.instance.user.email = res.user.email;
       Appdata.instance.user.password = res.user.password;
 
+      console.log(Appdata.instance.user);
+
       this.isLoading = false;
 
       this.router.navigate(["/home"]);
