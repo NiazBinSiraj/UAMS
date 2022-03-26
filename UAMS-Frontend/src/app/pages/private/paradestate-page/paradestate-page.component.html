@@ -18,8 +18,8 @@
   </div>
 
   <!--প্রাধিকার Table-->
-  <h1 class="title" style="text-align: center; color: white;">প্রাধিকার</h1>
-  <div class="table-container">
+  <h1 *ngIf="paradeStates.total.length != 0" class="title" style="text-align: center; color: white;">প্রাধিকার</h1>
+  <div *ngIf="paradeStates.total.length != 0" class="table-container">
     <table class="table is-bordered">
       <thead>
         <tr>
@@ -89,8 +89,8 @@
   </div>
 
   <!--প্রাপ্ত Table-->
-  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">প্রাপ্ত</h1>
-  <div class="table-container">
+  <h1 *ngIf="paradeStates.total.length != 0" class="title" style="text-align: center; color: black; margin-top: 30px;">প্রাপ্ত</h1>
+  <div *ngIf="paradeStates.total.length != 0" class="table-container">
     <table class="table is-bordered">
       <thead>
         <tr>
@@ -160,8 +160,8 @@
   </div>
 
   <!--উপস্থিত Table-->
-  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">উপস্থিত</h1>
-  <div class="table-container">
+  <h1 *ngIf="paradeStates.total.length != 0" class="title" style="text-align: center; color: black; margin-top: 30px;">উপস্থিত</h1>
+  <div *ngIf="paradeStates.total.length != 0" class="table-container">
     <table class="table is-bordered">
       <thead>
         <tr>
@@ -231,8 +231,8 @@
   </div>
 
   <!--অনুপস্থিত Table-->
-  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">অনুপস্থিত</h1>
-  <div class="table-container">
+  <h1 *ngIf="paradeStates.total.length != 0" class="title" style="text-align: center; color: black; margin-top: 30px;">অনুপস্থিত</h1>
+  <div *ngIf="paradeStates.total.length != 0" class="table-container">
     <table class="table is-bordered">
       <thead>
         <tr>
@@ -302,8 +302,8 @@
   </div>
 
   <!--অনুপস্থিতির বিবরণ Table-->
-  <h1 class="title" style="text-align: center; color: black; margin-top: 30px;">অনুপস্থিতির বিবরণ</h1>
-  <div class="table-container">
+  <h1 *ngIf="paradeStates.total.length != 0" class="title" style="text-align: center; color: black; margin-top: 30px;">অনুপস্থিতির বিবরণ</h1>
+  <div *ngIf="paradeStates.total.length != 0" class="table-container">
     <table class="table is-bordered">
       <thead>
         <tr>
@@ -369,7 +369,6 @@
       </tbody>
     </table>
   </div>
-
 </div>
 
 <!--CREATE-->

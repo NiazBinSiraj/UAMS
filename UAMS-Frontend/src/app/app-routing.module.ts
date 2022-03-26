@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: "forgetpassword", component: ForgetpasswordPageComponent},
   {path: '', redirectTo: "/login", pathMatch: 'full'},
   { path: 'home', loadChildren: () => import('./pages/private/home-page/home-page.module').then(m => m.HomePageModule) },
+  { path: 'about', loadChildren: () => import('./pages/private/aboutunit-page/aboutunit-page.module').then(m => m.AboutunitPageModule) },
   { path: 'myprofile', loadChildren: () => import('./pages/private/myprofile-page/myprofile-page.module').then(m => m.MyprofilePageModule) },
   { path: 'paradestate', loadChildren: () => import('./pages/private/paradestate-page/paradestate-page.module').then(m => m.ParadestatePageModule) },
   { path: 'offices', loadChildren: () => import('./pages/private/offices-page/offices-page.module').then(m => m.OfficesPageModule) },

@@ -79,6 +79,8 @@ export class EventCalendarComponent implements OnInit {
         this.events.push({event_id:newEvent.id, user_id:newEvent.user_id, title : newEvent.title, description: newEvent.description, start: newEvent.start_time, end: newEvent.end_time});
       }
       console.log(this.events);
+
+      //Fullcalander third party package
       this.calendarOptions = {
         initialView: 'dayGridMonth',
         dateClick: this.handleDateClick.bind(this),
